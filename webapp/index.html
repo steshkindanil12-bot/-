@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cloud Managers Vape Mini App</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body{font-family:Arial,sans-serif;background:#0f172a;color:#e2e8f0;margin:0;padding:16px}
+    .card{background:#111827;border:1px solid #334155;border-radius:14px;padding:16px;max-width:600px;margin:0 auto}
+    .btn{display:inline-block;padding:12px 14px;border-radius:10px;background:#22c55e;color:#06210f;text-decoration:none;font-weight:700}
+    h1{font-size:22px;margin-top:0}
+    p{line-height:1.45}
+    .muted{color:#94a3b8}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🛍 Mini App магазина</h1>
+    <p>Это базовый экран Telegram Mini App. Можно расширить до полноценного каталога, корзины и оплаты.</p>
+    <p class="muted" id="user"></p>
+    <a class="btn" href="#" onclick="Telegram.WebApp.close(); return false;">Закрыть приложение</a>
+  </div>
+
+  <script>
+    const tg = window.Telegram?.WebApp;
+    if (tg) {
+      tg.ready();
+      tg.expand();
+      const u = tg.initDataUnsafe?.user;
+      if (u) {
+        document.getElementById('user').textContent = `Пользователь: @${u.username || '-'} (id: ${u.id})`;
+      }
+    }
+  </script>
+</body>
+</html>
