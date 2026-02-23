@@ -1,0 +1,20 @@
+services:
+  - type: worker
+    name: vape-telegram-bot
+    runtime: python
+    plan: free
+    autoDeploy: true
+    rootDir: .
+    buildCommand: python -m pip install -r ./requirements.txt
+    startCommand: python ./bot.py
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: ADMIN_CHAT_ID
+        sync: false
+      - key: ADMIN_USERNAMES
+        value: cloudmanagerss
+      - key: PRICE_SOURCE
+        sync: false
+      - key: MINI_APP_URL
+        sync: false
